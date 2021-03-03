@@ -20,7 +20,9 @@ cases_by_state$RATE <- round(cases_by_state$RATE, digits = 2)
 # states$lat <- states$centroid[, 2]
 # states$long <- states$centroid[, 1]
 
-states <- states%>%
+cases_by_state$STATEFP <- as.character(cases_by_state$STATEFP)
+
+states <- states %>%
   left_join(cases_by_state, c("STATEFP" = "STATEFP"))
 
 states_df <- as.data.frame(states)
@@ -54,7 +56,7 @@ output$table_top_counties_rate <- DT::renderDT({
 top_states_cases <- function(){
   states_df %>%
     filter(YEAR == input$year) %>% 
-    top_n(50, CASES) %>%
+    top_n(10, CASES) %>%
     arrange(desc(CASES))
 }
 

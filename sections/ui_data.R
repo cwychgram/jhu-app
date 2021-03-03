@@ -1,63 +1,94 @@
+header_data <- dashboardHeader(
+  disable = TRUE)
+
 sidebar_data <- dashboardSidebar(
-  width = 375,
+  width = 400,
   
   sidebarMenu(
     
     menuItem(
       " Case Data",
       tabName = "case",
-      icon = icon("file-medical"),
+      icon = htmltools::browsable(tags$i(class = "fas fa-file-medical")),
       
       menuSubItem(
-        "U.S. Lyme Disease Counts (2018)",
+        "Lyme Disease Counts (2018)",
         tabName = "lyme-count"),
       
       menuSubItem(
-        "U.S. Lyme Disease Rates (2018)",
-        tabName = "lyme-rate")
+        "Lyme Disease Rates (2018)",
+        tabName = "lyme-rate"),
+      
+      menuSubItem(
+        "Babesiosis Counts (2018)",
+        tabName = "bab-count"),
+      
+      menuSubItem(
+        "Babesiosis Rates (2018)",
+        tabName = "bab-rate"),
+      
+      menuSubItem(
+        "Anaplasmosis Counts (2018)",
+        tabName = "a-count"),
+      
+      menuSubItem(
+        "Anaplasmosis Rates (2018)",
+        tabName = "a-rate"),
+      
+      menuSubItem(
+        "Ehrlichiosis (E. chaffeensis) Counts (2018)",
+        tabName = "e-count"),
+      
+      menuSubItem(
+        "Ehrlichiosis (E. chaffeensis) Rates (2018)",
+        tabName = "e-rate"),
+      
+      menuSubItem(
+        "Spotted Fever Rickettsiosis Counts (2018)",
+        tabName = "sfr-count"),
+      
+      menuSubItem(
+        "Spotted Fever Rickettsiosis Rates (2018)",
+        tabName = "sfr-rate"),
+      
+      menuSubItem(
+        "Tularemia Counts (2018)",
+        tabName = "tul-count"),
+      
+      menuSubItem(
+        "Powassan Virus Counts (2018)",
+        tabName = "pow-count")
       
     ),
     
     menuItem(
       " Environmental Data",
-      icon = icon("envira"),
+      icon = htmltools::browsable(tags$i(class = "fab fa-envira")),
       tabName = "environment",
       
       menuSubItem(
-        "% Forest Cover",
-        tabName = "forest-county"),
+        "Land Cover (2016)",
+        tabName = "nlcd"),
       
       menuSubItem(
-        "Forest Edge Density",
+        "Forest Edge Density (2016)",
         tabName = "forest-ed"),
       
-      menuSubItem(
-        "Forest Patch Density",
-        tabName = "forest-pd"),
+      # menuSubItem(
+      #   "Forest Patch Density",
+      #   tabName = "forest-pd"),
       
       menuSubItem(
-        "Mean Forest Patch Size",
-        tabName = "forest-size"),
-      
-      menuSubItem(
-        "% Herbaceous Cover",
-        tabName = "herb-county"),
-      
-      menuSubItem(
-        "% Forest-Herbaceous Edge",
-        tabName = "fhe"),
-      
-      menuSubItem(
-        "% Forest-Developed Edge",
+        "% Forest-Developed Edge (2016)",
         tabName = "fde"),
       
-      menuSubItem(
-        "% Developed Cover",
-        tabName = "dev-county"),
-      
-      menuSubItem(
-        "% Water Cover",
-        tabName = "water-county"),
+      # menuSubItem(
+      #   "% Developed Cover",
+      #   tabName = "dev-county"),
+      # 
+      # menuSubItem(
+      #   "% Water Cover",
+      #   tabName = "water-county"),
       
       menuSubItem(
         "Mean Elevation",
@@ -68,15 +99,15 @@ sidebar_data <- dashboardSidebar(
         tabName = "slope"),
       
       menuSubItem(
-        "Average Temperature",
+        "Average Temperature (Spr 2018)",
         tabName = "temp"),
       
       menuSubItem(
-        "Total Precipitation",
+        "Total Precipitation (Spr 2018)",
         tabName = "precip"),
       
       menuSubItem(
-        "Mean NDVI",
+        "Time-Integrated NDVI (2018)",
         tabName = "ndvi"),
       
       menuSubItem(
@@ -87,7 +118,7 @@ sidebar_data <- dashboardSidebar(
     
     menuItem(
       " Socio-Demographic Data",
-      icon = icon("user-alt"),
+      icon = htmltools::browsable(tags$i(class = "fas fa-users")),
       tabName = "socio-demographic",
       
       menuSubItem(
@@ -99,7 +130,7 @@ sidebar_data <- dashboardSidebar(
         tabName = "urban-rural"),
       
       menuSubItem(
-        "% Change in Housing Units (2017-2018)",
+        "% Change in Housing Units (2010-2018)",
         tabName = "housing"),
 
       menuSubItem(
@@ -107,22 +138,22 @@ sidebar_data <- dashboardSidebar(
         tabName = "hh-inc"),
       
       menuSubItem(
-        "Less than High School (2014-2018)",
-        tabName = "edu"),
+        "% High School Graduate + (2014-2018)",
+        tabName = "edu")
       
-      menuSubItem(
-        "% Population Age 5-14 (2014-2018)",
-        tabName = "age_05_14"),
-      
-      menuSubItem(
-        "% Population Age 45-59 (2014-2018)",
-        tabName = "age_45_59") 
+      # menuSubItem(
+      #   "% Population Age 5-14 (2014-2018)",
+      #   tabName = "age_05_14"),
+      # 
+      # menuSubItem(
+      #   "% Population Age 45-59 (2014-2018)",
+      #   tabName = "age_45_59") 
       
     ),
     
     menuItem(
-      " Tick-Host Data",
-      icon = icon("bug"),
+      " Tick Data",
+      icon = htmltools::browsable(tags$i(class = "fas fa-spider")),
       tabName = "ticks",
       
       menuSubItem(
@@ -133,55 +164,41 @@ sidebar_data <- dashboardSidebar(
         "Ixodes pacificus status (2019)",
         tabName = "pacificus")
       
-      # menuSubItem(
-      #   "White-tailed Deer Estimates (2008)",
-      #   tabName = "deer")
-      
     ),
     
     menuItem(
       " Google Trends Data",
-      icon = icon("search"),
+      icon = htmltools::browsable(tags$i(class = "fas fa-search")),
       tabName = "google",
       
       menuSubItem(
-        "'Lyme Disease' Search Interest (2019)",
+        "'Lyme Disease' Search Interest",
         tabName = "gt-ld"),
       
       menuSubItem(
-        "'Tick Bite' Search Interest (2019)",
+        "'Tick Bite' Search Interest",
         tabName = "gt-tick-bite")
-    ),
-    
-    menuItem(
-      " *Veterinary Data",
-      icon = icon("disease"),
-      tabName = "vet",
-      
-      menuSubItem(
-        "*Tick-borne Disease Cases in Dogs",
-        tabName = "dog")
-    ),
-    
-    menuItem(
-      " *Cost Burden Data",
-      icon = icon("dollar-sign"),
-      tabName = "cost",
-      
-      menuSubItem(
-        "*In Progress",
-        tabName = "tbd")
-    ),
-    br(),
-    menuItem(
-      " *Analytic Functionality",
-      icon = icon("chart-line"),
-      tabName = "analytics",
-      
-      menuSubItem(
-        "*In Progress",
-        tabName = "tbd")
     )
+    
+    # menuItem(
+    #   " *Veterinary Data",
+    #   icon = htmltools::browsable(tags$i(class = "fas fa-dog")),
+    #   tabName = "vet",
+    #   
+    #   menuSubItem(
+    #     "*Tick-borne Disease Cases in Dogs",
+    #     tabName = "dog")
+    # ),
+    # 
+    # menuItem(
+    #   " *Economic Burden Data",
+    #   icon = htmltools::browsable(tags$i(class = "fas fa-dollar-sign")),
+    #   tabName = "econ",
+    #   
+    #   menuSubItem(
+    #     "*In Progress",
+    #     tabName = "tbd")
+    # )
   )
 )
 
@@ -253,9 +270,79 @@ body_data <- dashboardBody(
     ),
     
     tabItem(
-      tabName = "forest-county",
+      tabName = "bab-count",
       fluidRow(
-        leafletOutput("forest_map_county", height = 890)
+        leafletOutput("bab_count_map", height = 820)
+      )
+    ),
+    
+    tabItem(
+      tabName = "bab-rate",
+      fluidRow(
+        leafletOutput("bab_rate_map", height = 820)
+      )
+    ),
+    
+    tabItem(
+      tabName = "a-count",
+      fluidRow(
+        leafletOutput("a_count_map", height = 820)
+      )
+    ),
+    
+    tabItem(
+      tabName = "a-rate",
+      fluidRow(
+        leafletOutput("a_rate_map", height = 820)
+      )
+    ),
+    
+    tabItem(
+      tabName = "e-count",
+      fluidRow(
+        leafletOutput("e_count_map", height = 820)
+      )
+    ),
+    
+    tabItem(
+      tabName = "e-rate",
+      fluidRow(
+        leafletOutput("e_rate_map", height = 820)
+      )
+    ),
+    
+    tabItem(
+      tabName = "sfr-count",
+      fluidRow(
+        leafletOutput("sfr_count_map", height = 820)
+      )
+    ),
+    
+    tabItem(
+      tabName = "sfr-rate",
+      fluidRow(
+        leafletOutput("sfr_rate_map", height = 820)
+      )
+    ),
+    
+    tabItem(
+      tabName = "tul-count",
+      fluidRow(
+        leafletOutput("tul_count_map", height = 820)
+      )
+    ),
+    
+    tabItem(
+      tabName = "pow-count",
+      fluidRow(
+        leafletOutput("pow_count_map", height = 820)
+      )
+    ),
+    
+    tabItem(
+      tabName = "nlcd",
+      fluidRow(
+        leafletOutput("nlcd_map", height = 890)
       )
     ),
     
@@ -266,19 +353,12 @@ body_data <- dashboardBody(
       )
     ),
     
-    tabItem(
-      tabName = "forest-pd",
-      fluidRow(
-        leafletOutput("forest_pd_map", height = 890)
-      )
-    ),
-    
-    tabItem(
-      tabName = "forest-size",
-      fluidRow(
-        leafletOutput("forest_size_map", height = 890)
-      )
-    ),
+    # tabItem(
+    #   tabName = "forest-pd",
+    #   fluidRow(
+    #     leafletOutput("forest_pd_map", height = 890)
+    #   )
+    # ),
     
     tabItem(
       tabName = "dev-county",
@@ -326,13 +406,6 @@ body_data <- dashboardBody(
       tabName = "herb-county",
       fluidRow(
         leafletOutput("herb_map_county", height = 890)
-      )
-    ),
-    
-    tabItem(
-      tabName = "fhe",
-      fluidRow(
-        leafletOutput("fhe_map", height = 890)
       )
     ),
     
@@ -397,21 +470,21 @@ body_data <- dashboardBody(
       )
     ),
     
-    tabItem(
-      tabName = "age_05_14",
-      
-      fluidRow(
-        leafletOutput("age_05_14_map", height = 890)
-      )
-    ),
+    # tabItem(
+    #   tabName = "age_05_14",
+    #   
+    #   fluidRow(
+    #     leafletOutput("age_05_14_map", height = 890)
+    #   )
+    # ),
     
-    tabItem(
-      tabName = "age_45_59",
-      
-      fluidRow(
-        leafletOutput("age_45_59_map", height = 890)
-      )
-    ),
+    # tabItem(
+    #   tabName = "age_45_59",
+    #   
+    #   fluidRow(
+    #     leafletOutput("age_45_59_map", height = 890)
+    #   )
+    # ),
     
     tabItem(
       tabName = "scapularis",
@@ -429,17 +502,23 @@ body_data <- dashboardBody(
       )
     ),
     
-    # tabItem(
-    #   tabName = "deer",
-    #   
-    #   fluidRow(
-    #     leafletOutput("deer_map", height = 890)
-    #   )
-    # ),
-    
     tabItem(
       tabName = "gt-ld",
       
+      fluidRow(
+        box(
+          width = 3,
+          height = 90,
+          background = "olive",
+          sliderInput("year_gt_ld",
+                      label = "Select Year", 
+                      value = 2020, 
+                      min = 2010, 
+                      max = 2020, 
+                      sep = ""
+          )
+        )
+      ),
       fluidRow(
         leafletOutput("gt_ld_map", height = 890)
       )
@@ -449,6 +528,20 @@ body_data <- dashboardBody(
       tabName = "gt-tick-bite",
       
       fluidRow(
+        box(
+          width = 3,
+          height = 90,
+          background = "olive",
+          sliderInput("year_gt_tb",
+                      label = "Select Year", 
+                      value = 2020, 
+                      min = 2010, 
+                      max = 2020, 
+                      sep = ""
+          )
+        )
+      ),
+      fluidRow(
         leafletOutput("gt_tick_bite_map", height = 890)
       )
     )
@@ -456,8 +549,8 @@ body_data <- dashboardBody(
 )
 
 tab_data <- dashboardPage(
-  title = "Data",
-  header = dashboardHeader(disable = TRUE),
+  title = "US Data",
+  header = header_data,
   sidebar = sidebar_data,
   body = body_data
 )

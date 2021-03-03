@@ -102,7 +102,7 @@ tab_profile <- fluidPage(
                  ),
                  valueBox(
                    width = 6,
-                   uiOutput("forest_size"), h5("Average Forest Patch Size (Ha)"), icon = icon(""), color = "olive"
+                   uiOutput("fde"), h5("Forest-Developed Edge (%)"), icon = icon(""), color = "olive"
                  )
                )
 

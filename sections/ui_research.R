@@ -1,8 +1,8 @@
 tab_research <- fluidPage(
   fluidRow(
-    column(2
+    column(3
     ),
-    column(8,
+    column(6,
            fluidRow(
              column(12,
                     align = "center",
@@ -28,7 +28,7 @@ tab_research <- fluidPage(
              )
            )
     ),
-    column(2
+    column(3
     )
   )
 )

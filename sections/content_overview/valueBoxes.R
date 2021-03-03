@@ -6,8 +6,3 @@ output$total_cases <- renderText({
 output$subtitle <- renderText({ 
   paste0(h4("Reported Cases in ", input$year))
 })
-
-output$counties_affected <- renderText({ 
-  df <- cases %>% filter(YEAR == input$year)
-  comma(sum(df$AFFECTED))
-})

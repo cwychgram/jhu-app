@@ -48,6 +48,10 @@ output$county_plot <- renderPlotly({
 })
 
 observeEvent(input$county,{
+
+  # if (input$state == "Alaska") {
+  #   states <- states %>% st_crop(states[states$NAME == "Alaska", ], xmin = -179.1473, ymin = 51.21986, xmax = -129.9742, ymax = 71.35256)
+  # } 
   
   state_lines <- states %>%
     filter(STNAME == input$state)
@@ -100,7 +104,7 @@ rval_nlcd <- reactive ({
   counties_nlcd %>%
     filter(STNAME == input$state) %>%
     filter(CTYNAME == input$county) %>%
-    rename(Class = NLCD_CLASS, Percent = NLCD_PCT)
+    rename(Class = CLASS, Percent = PCT)
 })
 
 output$plot_nlcd <- renderPlotly({
@@ -136,13 +140,13 @@ output$forest_edge <- renderText({
   
 })
 
-output$forest_patch <- renderText({
-  round(rval_forest()$PATCHES_100HA, digits = 2)
-  
-})
+# output$forest_patch <- renderText({
+#   round(rval_forest()$PATCHES_100HA, digits = 2)
+#   
+# })
 
-output$forest_size <- renderText({
-  round(rval_forest()$MEAN_PATCH_SIZE, digits = 2)
+output$fde <- renderText({
+  round(rval_forest()$FDED, digits = 2)
   
 })
 
@@ -178,7 +182,7 @@ rval_soil <- reactive ({
 })
 
 output$soil_order <- renderText({
-  rval_soil()$MAJ_TAX_ORDER_txt
+  rval_soil()$MAJ_TXT
   
 })
 
@@ -190,33 +194,33 @@ rval_tick <- reactive ({
 })
 
 output$tick_status <- renderText({
-  rval_tick()$Either_Status
+  rval_tick()$EITHER
   
 })
 
-rval_temp <- reactive ({
-  counties_temp <- as.data.frame(counties_temp)
-  counties_temp %>%
-    filter(STNAME == input$state) %>%
-    filter(CTYNAME == input$county)
-})
-
-output$temperature <- renderText({
-  rval_temp()$Value
-  
-})
-
-rval_precip <- reactive ({
-  counties_precip <- as.data.frame(counties_precip)
-  counties_precip %>%
-    filter(STNAME == input$state) %>%
-    filter(CTYNAME == input$county)
-})
-
-output$precipitation <- renderText({
-  rval_precip()$Value
-  
-})
+# rval_temp <- reactive ({
+#   counties_temp <- as.data.frame(counties_temp)
+#   counties_temp %>%
+#     filter(STNAME == input$state) %>%
+#     filter(CTYNAME == input$county)
+# })
+# 
+# output$temperature <- renderText({
+#   rval_temp()$Value
+#   
+# })
+# 
+# rval_precip <- reactive ({
+#   counties_precip <- as.data.frame(counties_precip)
+#   counties_precip %>%
+#     filter(STNAME == input$state) %>%
+#     filter(CTYNAME == input$county)
+# })
+# 
+# output$precipitation <- renderText({
+#   rval_precip()$Value
+#   
+# })
 
 rval_pop <- reactive ({
   counties <- counties %>% filter(YEAR == 2018) %>% as.data.frame()
@@ -243,6 +247,6 @@ rval_nchs <- reactive ({
 })
 
 output$urban_rural <- renderText({
-  rval_nchs()$Class_txt
+  rval_nchs()$CODE_TXT
   
 })

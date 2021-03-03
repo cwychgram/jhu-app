@@ -211,7 +211,7 @@ tab_overview <- fluidPage(
                       status = "success",
                       width = 12,
                       height = 275,
-                      title = "Reported Lyme Disease Cases of Lyme Disease, 2000-2018",
+                      title = "Reported Lyme Disease Cases, 2000-2018",
                       plotlyOutput("plot_historical_cases", height = "200px")
                     )
              )
